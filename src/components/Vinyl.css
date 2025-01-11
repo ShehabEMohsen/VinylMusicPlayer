@@ -1,0 +1,103 @@
+.vinyl{
+    width: 50rem;
+    height: 50rem;
+    background-color: black;
+    border-radius: 999999px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.rotating{
+    animation: spin 4s linear infinite;
+    animation-delay: 0.75s;
+}
+.rotating.stopped{
+    animation: none;
+    transition: transform 0.5s ease-out;
+}
+.small-circle{
+    width: 98.5%;
+    height: 98.5%;
+    background-color: transparent;
+    border-radius: 999999px;
+    border:solid 1px;
+    border-color: rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.small-image{
+    width: 60%;
+    height: 60%;
+    background-color: #1B4090;
+    border-radius: 999999px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.song-name{
+    font-size: 2.6rem;
+    color: white;
+    font-weight: bold;
+}
+.artist-name{
+    font-size: 1.2rem;
+    color: white;
+}
+.area{
+    display: flex;
+}
+.arm{
+    width: 10px;
+    height: 20rem;
+    background-color: #f0f0f0;
+    /* position: absolute; */
+    z-index: 100;
+    /* right: 10rem; */
+    transform-origin: top;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    
+}
+.moving-arm{
+    animation: arm 0.7s ease-in-out forwards;
+}
+.pin{
+    width: 30px;
+    height: 30px;
+    background-color: #f0f0f0;
+}
+
+@media only screen and (max-width: 950px) {
+    .small-image{
+        background-image: url('../assets/cover.jpg');
+    }
+}
+
+@keyframes spin {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+@keyframes rotateBack{
+    0%{
+        transform: rotate(-360deg);
+    }
+    100%{
+        transform: rotate(0deg);
+    }
+}
+@keyframes arm{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(18deg);
+    }
+}

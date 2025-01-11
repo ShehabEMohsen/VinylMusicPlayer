@@ -1,0 +1,18 @@
+.arm{
+    width: 10px;
+    height: 20rem;
+    background-color: #f0f0f0;
+    /* position: absolute; */
+    z-index: 100;
+    /* right: 10rem; */
+    transform-origin: top;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+}
+.pin{
+    width: 30px;
+    height: 30px;
+    background-color: #f0f0f0;
+}
