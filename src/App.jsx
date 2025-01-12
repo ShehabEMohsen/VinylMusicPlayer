@@ -3,7 +3,6 @@ import './App.css'
 import Vinyl from './components/Vinyl'
 import Login from './components/Login'
 import { getAccessTokenFromUrl } from './utils/auth';
-import Playlists from './components/Playlists';
 
 function App() {
   const [token, setToken] = useState(null);
@@ -22,7 +21,7 @@ function App() {
         }
         return response.json();
       }).then((data)=>{
-        console.log("User info: ",data);
+        // console.log("User info: ",data);
         setUserInfo(data);
 
         fetch(`https://api.spotify.com/v1/users/${data.id}/playlists`,{
@@ -35,7 +34,7 @@ function App() {
           }
           return response.json();
         }).then((playlistsData)=>{
-          console.log("Playlists: ", playlistsData);
+          // console.log("Playlists: ", playlistsData);
           setPlaylists(playlistsData.items||[]);
         }).catch((error)=>{
           console.error("Error fetching playlists: ", error);
@@ -44,10 +43,10 @@ function App() {
         console.error("Error: ",error)
       })
     }
-    console.log(playlists)
+    // console.log(playlists)
     const accessToken = getAccessTokenFromUrl();
     if(accessToken){
-      console.log("Access Token: ",accessToken)
+      // console.log("Access Token: ",accessToken)
       setToken(accessToken);
       window.history.pushState({},"","/");
     }
@@ -56,8 +55,14 @@ function App() {
   return (
     <>
       {/* <Vinyl/> */}
-      {token?<div><Vinyl user={userInfo} playlist={playlists}/><Playlists playlists={playlists}/> </div>:<Login />}
-      
+      {token ? (
+  <div>
+    <Vinyl user={userInfo} token={token} />
+    {/* <Playlists playlists={playlists} /> */}
+  </div>
+) : (
+  <Login />
+)}
     </>
   )
 }

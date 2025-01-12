@@ -1,11 +1,11 @@
-
-const CLIENT_ID = "8d912fb75f43433b82af89f9de7f6f6b";
-const REDIRECT_URI = "http://localhost:5174/";
+const CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
+const REDIRECT_URI = `${import.meta.env.VITE_REDIRECT_URI}`;
 const SCOPES = [
     "user-read-email",
     "user-read-private",
     "playlist-read-private",
     "playlist-read-collaborative",
+    "user-read-playback-state",
 ]
 
 export const getSpotifyAuthUrl = (): string => {

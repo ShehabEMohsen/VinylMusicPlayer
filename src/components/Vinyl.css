@@ -1,4 +1,6 @@
 .vinyl{
+    position: absolute;
+    z-index:2;
     width: 35rem;
     height: 35rem;
     background-color: black;
@@ -6,15 +8,26 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    animation: spinBack 0.3s linear;
+    left:50%;
+    /* animation:none; */
+    transform-origin: center;
 }
-.rotating{
+.album-cover{
+    position: relative;
+    z-index:1;
+    width: 32rem;
+    height: 32rem;
+    transform: translate(-15%);
+}
+.vinyl.rotating{
     animation: spin 4s linear infinite;
     animation-delay: 0.75s;
 }
-.rotating.stopped{
+/* .rotating.stopped{
     animation: none;
     transition: transform 0.5s ease-out;
-}
+} */
 .small-circle{
     width: 98.5%;
     height: 98.5%;
@@ -35,20 +48,36 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 1rem;
 }
 .song-name{
+    -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: black;
     font-size: 2.6rem;
     color: white;
     font-weight: bold;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
 }
 .artist-name{
-    font-size: 1.2rem;
+    -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+    font-size: 1.5rem;
     color: white;
+    font-weight: 500;
 }
 .area{
-    display: flex;
+    /* position: relative; */
+  display: flex;
+  /* justify-content: center;
+  align-items: center; */
 }
 .arm{
+    position: absolute;
+    left:81%;
     width: 10px;
     height: 20rem;
     background-color: #f0f0f0;
@@ -61,6 +90,7 @@
     justify-content: end;
     align-items: center;
     transform: rotate(-12deg);
+    animation: armBack 0.7s ease-in-out;
 }
 .moving-arm{
     animation: arm 0.7s ease-in-out forwards;
@@ -75,6 +105,46 @@
     .small-image{
         background-image: url('../assets/cover.jpg');
     }
+    .album-cover{
+        display: none;
+    }
+    .vinyl{
+        width: 35rem;
+    height: 35rem;
+    background-color: black;
+    border-radius: 999999px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position:relative;
+    left:0;
+    }
+    .arm{
+        width: 10px;
+        height: 20rem;
+        background-color: #f0f0f0;
+        /* position: absolute; */
+        z-index: 100;
+        /* right: 10rem; */
+        transform-origin: top;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: center;
+        transform: rotate(-12deg);
+        animation: smallArmBack 0.7s ease-in-out;
+    }
+    .moving-arm{
+        animation: smallArm 0.7s ease-in-out forwards;
+    }
+}
+@keyframes smallArmBack{
+    0%{
+        transform: rotate(8deg);
+    }
+    100%{
+        transform: rotate(-12deg);
+    }
 }
 
 @keyframes spin {
@@ -83,6 +153,14 @@
     }
     100%{
         transform: rotate(360deg);
+    }
+}
+@keyframes spinBack {
+    0%{
+        transform: rotate(360deg);
+    }
+    100%{
+        transform: rotate(0deg);
     }
 }
 @keyframes rotateBack{
@@ -98,6 +176,22 @@
         transform: rotate(-12deg);
     }
     100%{
-        transform: rotate(12deg);
+        transform: rotate(17deg);
+    }
+}
+@keyframes smallArm{
+    0%{
+        transform: rotate(-12deg);
+    }
+    100%{
+        transform: rotate(8deg);
+    }
+}
+@keyframes armBack{
+    0%{
+        transform: rotate(17deg);
+    }
+    100%{
+        transform: rotate(-12deg);
     }
 }
