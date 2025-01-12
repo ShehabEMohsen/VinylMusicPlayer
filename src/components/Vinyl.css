@@ -1,6 +1,6 @@
 .vinyl{
-    width: 50rem;
-    height: 50rem;
+    width: 35rem;
+    height: 35rem;
     background-color: black;
     border-radius: 999999px;
     display: flex;
@@ -60,7 +60,7 @@
     flex-direction: column;
     justify-content: end;
     align-items: center;
-    
+    transform: rotate(-12deg);
 }
 .moving-arm{
     animation: arm 0.7s ease-in-out forwards;
@@ -95,9 +95,9 @@
 }
 @keyframes arm{
     0%{
-        transform: rotate(0deg);
+        transform: rotate(-12deg);
     }
     100%{
-        transform: rotate(18deg);
+        transform: rotate(12deg);
     }
 }

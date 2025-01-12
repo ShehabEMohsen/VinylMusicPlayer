@@ -1,0 +1,12 @@
+.albums-bar{
+    width: 100%;
+    display: flex;
+    gap:2rem;
+    margin-top: 2rem;
+    color: white;
+    font-weight: bold;
+}
+.albums-bar img{
+    width: 10rem;
+    cursor: pointer;
+}

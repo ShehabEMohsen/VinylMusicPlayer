@@ -3,11 +3,13 @@ import "./Vinyl.css";
 // import Cover from "../assets/cover.jpg";
 // import Arm from "./Arm";
 
-function Vinyl() {
+function Vinyl({ user }) {
   const [move, setMove] = useState(false);
 
   return (
     <div className="area">
+      {user?.display_name}
+      {/* <img src={playlist[0].images[0].url} /> */}
       <div
         className={`vinyl ${move ? "rotating" : "stopped"}`}
         onClick={() => setMove(!move)}
