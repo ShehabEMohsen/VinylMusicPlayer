@@ -12,6 +12,8 @@ function Vinyl({ user, token }) {
   const [albumCover, setAlbumCover] = useState("");
   const [domColor, setDomColor] = useState("#00000");
   const [isScreenSmall, setIsScreenSmall] = useState(window.innerWidth <= 950);
+  const [musicPlaying, setMusicPlaying] = useState(false);
+  const [hasPlayed, setHasPlayed] = useState(false);
 
   useEffect(() => {
     const checkPlaybackState = async () => {
@@ -30,6 +32,8 @@ function Vinyl({ user, token }) {
         const data = await response.json();
         const isPlaying = data.is_playing;
         setMove(isPlaying);
+        setMusicPlaying(isPlaying);
+        console.log(musicPlaying);
 
         if (data.item) {
           setSongName(data.item.name);
@@ -45,6 +49,9 @@ function Vinyl({ user, token }) {
                 setDomColor(palette.DarkVibrant.hex);
               }
             });
+          if (!hasPlayed) {
+            setHasPlayed(true);
+          }
         }
       } catch (error) {
         console.error("Failed to fetch playback state:", error);
@@ -67,15 +74,13 @@ function Vinyl({ user, token }) {
 
   return (
     <div className="area">
-      {/* {user?.display_name} */}
-      {/* <img src={playlist[0].images[0].url} /> */}
-      <img className="album-cover" src={albumCover} />
-      <div
-        className={`vinyl ${move ? "rotating" : "stopped"}`}
-        onClick={() => setMove(!move)}
-      >
-        <div className="small-circle">
-          <div className="small-circle">
+      {hasPlayed ? (
+        <>
+          <img className="album-cover" src={albumCover} />
+          <div
+            className={`vinyl ${move ? "rotating" : "stopped"}`}
+            // onClick={() => setMove(!move)}
+          >
             <div className="small-circle">
               <div className="small-circle">
                 <div className="small-circle">
@@ -96,24 +101,29 @@ function Vinyl({ user, token }) {
                                               <div className="small-circle">
                                                 <div className="small-circle">
                                                   <div className="small-circle">
-                                                    <div
-                                                      className="small-image"
-                                                      style={{
-                                                        // backgroundImage: `url(${albumCover})`,
-                                                        // backgroundColor:
-                                                        //   domColor,
-                                                        background:
-                                                          isScreenSmall
-                                                            ? `center no-repeat url(${albumCover})`
-                                                            : domColor,
-                                                      }}
-                                                    >
-                                                      <div className="song-name">
-                                                        {songName ||
-                                                          "No song playing"}
-                                                      </div>
-                                                      <div className="artist-name">
-                                                        {artistName || "artist"}
+                                                    <div className="small-circle">
+                                                      <div className="small-circle">
+                                                        <div
+                                                          className="small-image"
+                                                          style={{
+                                                            // backgroundImage: `url(${albumCover})`,
+                                                            // backgroundColor:
+                                                            //   domColor,
+                                                            background:
+                                                              isScreenSmall
+                                                                ? `center no-repeat url(${albumCover})`
+                                                                : domColor,
+                                                          }}
+                                                        >
+                                                          <div className="song-name">
+                                                            {songName ||
+                                                              "No song playing"}
+                                                          </div>
+                                                          <div className="artist-name">
+                                                            {artistName ||
+                                                              "artist"}
+                                                          </div>
+                                                        </div>
                                                       </div>
                                                     </div>
                                                   </div>
@@ -137,14 +147,20 @@ function Vinyl({ user, token }) {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div
-        className={move ? "arm  moving-arm" : "arm"}
-        onClick={() => setMove(!move)}
-      >
-        <div className="pin"></div>
-      </div>
+          <div
+            className={move ? "arm  moving-arm" : "arm"}
+            // onClick={() => setMove(!move)}
+          >
+            <div className="pin"></div>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="play-song-text">Play a song on Spotify</div>
+        </>
+      )}
+      {/* {user?.display_name} */}
+      {/* <img src={playlist[0].images[0].url} /> */}
     </div>
   );
 }

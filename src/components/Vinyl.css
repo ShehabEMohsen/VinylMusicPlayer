@@ -102,6 +102,15 @@
     background-color: #f0f0f0;
 }
 
+.play-song-text{
+    color: #fff;
+    font-family: 'freight-big-pro';
+    font-size: 7rem;
+    font-weight: normal;
+    letter-spacing: -6.5px;
+    overflow-wrap: break-world;
+}
+
 @media only screen and (max-width: 950px) {
     .small-image{
         background-image: url('../assets/cover.jpg');
