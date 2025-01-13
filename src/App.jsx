@@ -37,10 +37,10 @@ function App() {
           // console.log("Playlists: ", playlistsData);
           setPlaylists(playlistsData.items||[]);
         }).catch((error)=>{
-          console.error("Error fetching playlists: ", error);
+          // console.error("Error fetching playlists: ", error);
         })
       }).catch((error) =>{
-        console.error("Error: ",error)
+        // console.error("Error: ",error)
       })
     }
     // console.log(playlists)
