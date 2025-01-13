@@ -26,14 +26,14 @@ function Vinyl({ user, token }) {
         });
 
         if (!response.ok) {
-          console.error("Failed to fetch playback state.");
+          // console.error("Failed to fetch playback state.");
           return;
         }
         const data = await response.json();
         const isPlaying = data.is_playing;
         setMove(isPlaying);
         setMusicPlaying(isPlaying);
-        console.log(musicPlaying);
+        // console.log(musicPlaying);
 
         if (data.item) {
           setSongName(data.item.name);
@@ -54,7 +54,7 @@ function Vinyl({ user, token }) {
           }
         }
       } catch (error) {
-        console.error("Failed to fetch playback state:", error);
+        // console.error("Failed to fetch playback state:", error);
       }
     };
 
